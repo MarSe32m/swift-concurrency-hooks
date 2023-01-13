@@ -32,7 +32,7 @@ await Task.detached {
     await withTaskGroup(of: Void.self) { group in 
         for i in 0..<5 {
             group.addTask {
-                try! await Task.sleep(for: .seconds(1))
+                try! await Task.sleep(nanoseconds: 1_000_000_000)
             }
         }
     }
