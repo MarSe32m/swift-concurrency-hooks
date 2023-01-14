@@ -4,7 +4,6 @@ import PackageDescription
 
 let package = Package(
     name: "swift_concurrency_hooks",
-    platforms : [.macOS(.v13)],
     targets: [
         .target(name: "ConcurrencyRuntimeC"),
         .executableTarget(
