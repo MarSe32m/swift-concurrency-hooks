@@ -30,7 +30,7 @@ Task.detached {
 await Task.detached {
     await someMainActorFunc()
     await withTaskGroup(of: Void.self) { group in 
-        for i in 0..<5 {
+        for _ in 0..<5 {
             group.addTask {
                 try! await Task.sleep(nanoseconds: 1_000_000_000)
             }
