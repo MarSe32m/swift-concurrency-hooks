@@ -1,4 +1,3 @@
-#include <stdalign.h>
 #include <stdint.h>
 
 #if !defined(__has_feature)
@@ -176,14 +175,7 @@
 #define SWIFT_INDIRECT_RESULT
 #endif
 
-typedef struct _Job* JobRef;
-
-typedef __attribute__((aligned(2 * alignof(void *)))) struct {
-    void *_Nonnull Metadata;
-    int32_t RefCounts;
-    void *_Nullable SchedulerPrivate[2];
-    uint32_t Flags;
-} Job;
+typedef struct _Job Job;
 
 /// A hook to take over global enqueuing.
 typedef SWIFT_CC(swift) void (*swift_task_enqueueGlobal_original)(Job *_Nonnull job);
