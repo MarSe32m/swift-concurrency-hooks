@@ -5,14 +5,14 @@ swift_task_enqueueGlobal_hook = { job, original in
     original(job)
 }
 
-swift_task_enqueueMainExecutor_hook = { job, original in 
+swift_task_enqueueMainExecutor_hook = { job, original in
     print("enqueueMainExecutor")
     original(job)
 }
 
 @MainActor
 func someMainActorFunc() async {
-    print("We are running on the main actor?")
+    print("Main actor function")
 }
 
 Task { @MainActor in 
@@ -29,12 +29,4 @@ Task.detached {
 
 await Task.detached {
     await someMainActorFunc()
-    await withTaskGroup(of: Void.self) { group in 
-        for _ in 0..<5 {
-            group.addTask {
-                try! await Task.sleep(nanoseconds: 1_000_000_000)
-            }
-        }
-    }
-    print("Done")
 }.value
