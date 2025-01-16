@@ -181,15 +181,16 @@ typedef struct _Job Job;
 typedef SWIFT_CC(swift) void (*swift_task_enqueueGlobal_original)(Job *_Nonnull job);
 SWIFT_EXPORT_FROM(swift_Concurrency)
 SWIFT_CC(swift) void (* _Nullable swift_task_enqueueGlobal_hook)(
-    Job *_Nonnull job, swift_task_enqueueGlobal_original _Nonnull original);
+    Job *_Nonnull job, swift_task_enqueueGlobal_original _Nonnull original) __attribute__((swift_attr("nonisolated(unsafe)")));
 
 /// A hook to take over global enqueuing with delay.
 typedef SWIFT_CC(swift) void (*swift_task_enqueueGlobalWithDelay_original)(
     unsigned long long delay, Job *_Nonnull job);
 SWIFT_EXPORT_FROM(swift_Concurrency)
-SWIFT_CC(swift) void (* _Nullable swift_task_enqueueGlobalWithDelay_hook)(
+SWIFT_CC(swift) 
+void (* _Nullable swift_task_enqueueGlobalWithDelay_hook)(
     unsigned long long delay, Job *_Nonnull job,
-    swift_task_enqueueGlobalWithDelay_original _Nonnull original);
+    swift_task_enqueueGlobalWithDelay_original _Nonnull original) __attribute__((swift_attr("nonisolated(unsafe)")));
 
 typedef SWIFT_CC(swift) void (*swift_task_enqueueGlobalWithDeadline_original)(
     long long sec,
@@ -204,11 +205,11 @@ SWIFT_CC(swift) void (* _Nullable swift_task_enqueueGlobalWithDeadline_hook)(
     long long tsec,
     long long tnsec,
     int clock, Job *_Nonnull job,
-    swift_task_enqueueGlobalWithDeadline_original _Nonnull original);
+    swift_task_enqueueGlobalWithDeadline_original _Nonnull original) __attribute__((swift_attr("nonisolated(unsafe)")));
 
 /// A hook to take over main executor enqueueing.
 typedef SWIFT_CC(swift) void (*swift_task_enqueueMainExecutor_original)(Job *_Nonnull job);
 
 SWIFT_EXPORT_FROM(swift_Concurrency)
 SWIFT_CC(swift) void (* _Nullable swift_task_enqueueMainExecutor_hook)(
-    Job *_Nonnull job, swift_task_enqueueMainExecutor_original _Nonnull original);
+    Job *_Nonnull job, swift_task_enqueueMainExecutor_original _Nonnull original) __attribute__((swift_attr("nonisolated(unsafe)")));
